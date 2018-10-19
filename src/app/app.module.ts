@@ -15,6 +15,18 @@ import {SearchPipe} from "../pipes/search";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+export const firebaseConfig = {
+
+  apiKey: "AIzaSyBpLCKjjaHEwgQsYyLYzgpYE1z-1_XxYmI",
+  authDomain: "platzinger-fd676.firebaseapp.com",
+  databaseURL: "https://platzinger-fd676.firebaseio.com",
+  storageBucket: "platzinger-fd676.appspot.com",
+  messagingSenderId: "191060278370"
+};
 
 @NgModule({
   declarations: [
@@ -30,6 +42,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPageModule,
     ConversationPageModule,
     AboutPageModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,6 +56,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     UserService,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
