@@ -4,15 +4,58 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <img src="assets/imgs/logo_live_add.png" class="icon-in-button">
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content padding class="backgroundPlatzinger">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-grid id="homeMeContainer">
+    <ion-row>
+      <ion-col col-3>
+        <div class="avatarFrameOffline">
+            <img src="assets/imgs/generic_avatar.png" class="avatarImg img-fluid" alt="">
+        </div>
+      </ion-col>
+      <ion-col col-9>
+        Nick <br />
+        <small>Subnick</small><br/>
+        <small><b>algo@algo.com</b></small>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <div class="searchBoxContainer">
+      <ion-input type="text" placeholder="Buscar..." [(ngModel)]="searchQuery"></ion-input>
+  </div>
+
+  <div class="">
+    <div class="">
+      <b>Amigos</b>
+    </div>
+    <div class="contact-list-item" [ngClass]="{'contact-offline': user.status == 'Offline' || user.status == 'AppearOffline'}" [ngStyle]="{'color': (user.status == 'Offline' || user.status == 'AppearOffline') ? 'red' : 'blue' }" *ngFor="let user of friends | search: searchQuery" (click)="goToConversation(user)">
+      <img src="assets/imgs/logo_live_online.png" class="status" alt="">
+      <b>{{user.nick}}</b>
+      <small *ngIf="user.status">{{user.status}}</small>
+    </div>
+  </div>
+
+
+  <!-- <ion-list>
+    <ion-item-divider color="light">Amigos</ion-item-divider>
+    <ng-container *ngFor="let user of friends | search: searchQuery">
+      <ion-item (click)="goToConversation(user)">
+        <ion-icon *ngIf="user.friend" name="contact" item-start></ion-icon>
+        <ion-icon *ngIf="!user.friend" name="person-add" item-start></ion-icon>
+          {{ user.nick }} - {{ user.email }}
+        <ion-icon name="chatbubbles" item-end></ion-icon>
+      </ion-item>
+    </ng-container>
+  </ion-list> -->
+
 </ion-content>

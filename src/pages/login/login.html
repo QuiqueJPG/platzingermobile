@@ -1,0 +1,70 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="backgroundPlatzinger bposy0">
+
+  <div class="" id="avatarLogin">
+    <ion-row>
+      <ion-col col-6 offset-3>
+        <div class="avatarFrameOffline">
+            <img src="assets/imgs/generic_avatar.png" class="avatarImg img-fluid" alt="">
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-list margin-top>
+
+    <ion-item>
+      <ion-label fixed>Nick</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Email</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Repetir Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Estatus</ion-label>
+      <ion-select interface="action-sheet">
+        <ion-option value="online">Conectado</ion-option>
+        <ion-option value="away">Ausente</ion-option>
+        <ion-option value="busy">Ocupado</ion-option>
+        <ion-option value="apper_offline">Desconectado</ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <span>Ya tienes cuenta? Click aquí</span>
+    <span>No tienes cuenta? click aquí</span>
+    <hr />
+
+    <button type="button" ion-button block name="button">Ingresar</button>
+    <button type="button" ion-button block name="button">Registrarse</button>
+  </div>
+
+</ion-content>

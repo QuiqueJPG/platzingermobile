@@ -1,0 +1,132 @@
+Intro a Ionic Framework, Angular, Platzinger, y Ionic CLI
+
+  ¿Qué es Ionic?
+
+    Es un framework basado en Angular para crear aplicaciones hibridas, gracias al uso de Cordova se puede acceder a las características nativas de los dispositivos.
+
+  ¿Qué es Angular?
+
+    Es un framework basado en TypeScript que permite crear Single Page Applications.
+
+  ¿Qué es Cordova?
+
+    Es un framework open-source usado para el desarrollo de aplicaciones móviles a partir de tecnologías web. Brinda una API en JavaScript para poder acceder a las características nativas del dispositivo.
+
+  La herramienta de consola Ionic CLI que te ayudara entre algunas cosas a:
+
+    - Transpilar código de TypeScript a JavaScript.
+    - Crear un servidor local el cual se refrescará automáticamente ante cualquier cambio que hagas en tus archivos.
+    - Exportar tu app para iOS o Android.
+
+
+Arquitectura de una app en Ionic
+
+    ¿Qué significa que Ionic sea framework hibrido?
+
+      Básicamente que podremos escribir ese código una sola vez y después será compilado a código nativo como Objective-C, Swift o Java.
+
+      Ionic corre en un WebView el cual simula un navegador web, por ello es que puedes escribir código directamente en HTML y CSS para las interfaces y TypeScript para la lógica.
+
+      Junto a nuestro código tenemos el JavaScript bridge el cual nos provee Ionic, este bridge nos procesa el código para que pueda comunicarse con nuestro framework hibrido de la aplicación, que en este caso es Cordova.
+
+      Por último, Cordova se conecta a la parte nativa del dispositivo móvil.
+
+      Una gran ventaja que nos proporciona Ionic es que podemos reutilizar conocimientos de lenguajes web y con ello ganamos tiempo en desarrollo, pero a costo de la latencia de ejecución en nuestro código. Esta latencia es mínima hoy en día al punto de que es casi imperceptible, hace 5 años era muy marcada.
+
+
+Qué son pages y cómo generar las primeras de nuestra app
+
+
+      Nuestra aplicación contara con cuatro distintas páginas:
+
+        Login: nuestro usuario podrá ingresar o registrarse a partir de esta pantalla.
+        Home: será nuestro dashboard o página central de la aplicación donde se podrá ver la lista de amigos, así como información del usuario, también podrá cambiar su status.
+        Configuración: en esta pantalla el usuario podrá cambiar toda su información, dicha información se guarda en una base de datos remota.
+        Conversación: accedes a ella desde Home dando click en algún amigo con el que quieras conversar, este chat es en tiempo real.
+
+
+      Los decoradores proporcionaran una funcionalidad especifica para cada clase en la que se utilice, dependiendo del decorador que se utilice será la funcionalidad que añada, por ejemplo:
+
+        Component: tendrán atado un html pero pueden estar dentro de algún componente o página.
+        Pages: están atados a un html pero a diferencia del Component estos no pueden estar dentro de un componente o alguna otra página.
+        Injectable: no tienen atados ningún html, son servicios que pueden agregarse a otras clases diferentes.
+        Dentro de las clases en la programación orientada a objetos, el método constructor es el primer método que se ejecuta y sus parámetros serán aquellos objetos que necesitemos inyectar para usarlos dentro de esa clase en específico. Un objeto común que inyectemos en las paginas de nuestra aplicación será el NavController, este objeto se encarga de las funciones de navegación en Ionic.
+
+      Para generar nuestras propias paginas debemos correr el comando:
+
+        ionic generate page <nombre del page o página >
+
+      Las clases de Ionic tienen un método especifico llamado ionViewDidLoad que se ejecuta automáticamente cuando termina de cargar la vista del html.
+      Ionic crea un archivo modulo para cada página que genere, este archivo se encarga de hacer disponible la página para el resto de la aplicación.
+
+      Debemos añadir manualmente nuestras páginas al sidemenu dentro de nuestro archivo app.component.ts para poder navegar a ellas desde nuestro menú.
+      Por último, debemos añadir los archivos module de nuestras páginas al archivo module principal que se encuentra dentro de la carpeta app.
+
+
+Interfaces
+
+    Las interfaces nos permiten definir modelos de datos que se usaran en el component. Para ello, hacemos los siguiente:
+
+      export interface User {
+        nick: string;
+        subnick?: string;
+        age?: number;
+        email: string;
+        friend: boolean;
+        id: any
+      }
+
+
+    Se hace el import de la interface desde el componente:
+
+      import { User } from '../../interfaces/user';
+
+    Y luego se usan como si fuera un tipo en typescript:
+
+      let myUser: User = {
+        nick: 'Jesus',
+        subnick: 'jesus',
+        age: 23,
+        email: 'algo@algo.com',
+        friend: true,
+        id: 1
+
+      }
+
+
+NgFor aplicado a en la lista de usuarios
+
+  <p *ngFor="let user of friends; let i = index">
+    {{ i }}. {{ user.nick }} - {{ user.email }}
+  </p>
+
+
+NgIf aplicado en la lista de usuarios
+
+  <p>Amigos</p>
+  <ng-container *ngFor="let user of friends; let i = index">
+    <p>
+      {{ i }}. {{ user.nick }} - {{ user.email }}
+    </p>
+  </ng-container>
+
+  <p>No agregados</p>
+  <ng-container *ngFor="let user of friends; let i = index">
+    <p *ngIf="!user.friend">
+      {{ i }}. {{ user.nick }} - {{ user.email }}
+    </p>
+  </ng-container>
+
+
+Creando un servicios
+
+  ionic generate provider services/user
+
+
+Pipes en TypeScript (Date, Number, Json)
+
+  Son elementos que podemos usar en el lado del HTML que nos permite formatear información para desplegarlo de una mejor manera. Estos son los vistos en clase:
+
+    json: formatea en formato JSON.
+    number: 1.2-2: formatea según parámetros, en este caso los decimales serían mínimo dos y máximo dos.
+    date: ‘medium’: formatea en formato fecha y hora legible.
