@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User, Status } from '../interfaces/user';
+import { AngularFireDatabase } from 'angularfire2/database'
 
 @Injectable()
 export class UserService {
@@ -57,7 +58,7 @@ export class UserService {
 
   }
 
-  constructor(){
+  constructor(private afdb: AngularFireDatabase){
     this.users = [
       this.myUser,
       this.myUser2,
@@ -69,6 +70,20 @@ export class UserService {
 
   getUsers(){
     return this.users;
+    // return this.afdb.list('/users');
+  }
+
+  getUserById(id){
+    return this.afdb.object(`users/${id}`)
+  }
+
+  createUser(user){
+console.log(user)
+    // return this.afdb.object(`users/${user.id}`).set(user);
+  }
+
+  editUser(user){
+    return this.afdb.object(`users/${user.id}`).set(user);
   }
 
   add(user: User) {

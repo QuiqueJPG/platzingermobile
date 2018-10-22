@@ -47,8 +47,6 @@ export class HomePage {
 
   getIconByStatus (status) {
 
-    console.log(status)
-
     let icon = ''
 
     switch (status) {

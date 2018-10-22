@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { UserService } from '../../services/user';
+import { User } from '../../interfaces/user';
 
 /**
  * Generated class for the LoginPage page.
@@ -15,7 +17,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  nick:string;
+  email:string;
+  password:string;
+  secondPassword:string;
+  status:string;
+
+  myUser: User = {
+    nick: '',
+    subnick: '',
+    age: 23,
+    email: '',
+    friend: false,
+    id: '',
+    status: ''
+
+  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
   }
 
   ionViewDidLoad() {
@@ -24,6 +43,18 @@ export class LoginPage {
 
   goBack(){
     this.navCtrl.pop();
+  }
+
+  login() {
+
+
+    this.myUser.nick = this.nick;
+    this.myUser.email = this.email;
+    this.myUser.password = this.password;
+    this.myUser.secondPassword = this.secondPassword;
+    this.myUser.status = this.status;
+
+    this.userService.createUser(this.myUser);
   }
 
 }

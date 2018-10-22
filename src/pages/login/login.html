@@ -29,26 +29,26 @@
 
     <ion-item>
       <ion-label fixed>Nick</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="nick"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Repetir Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="secondPassword"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Estatus</ion-label>
-      <ion-select interface="action-sheet">
+      <ion-select interface="action-sheet" [(ngModel)]="status">
         <ion-option value="online">Conectado</ion-option>
         <ion-option value="away">Ausente</ion-option>
         <ion-option value="busy">Ocupado</ion-option>
@@ -63,8 +63,8 @@
     <span>No tienes cuenta? click aquí</span>
     <hr />
 
-    <button type="button" ion-button block name="button">Ingresar</button>
-    <button type="button" ion-button block name="button">Registrarse</button>
+    <button type="button" ion-button block (click)="login()">Ingresar</button>
+    <button type="button" ion-button block (click)="signup()">Registrarse</button>
   </div>
 
 </ion-content>
