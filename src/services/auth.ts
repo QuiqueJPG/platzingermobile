@@ -29,5 +29,21 @@ export class AuthService {
     console.log(user)
   }
 
+  loginWithEmail(email: string, password: string){
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  signupWithEmail(email: string, password: string){
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
+
+  getStatus() {
+    return this.afAuth.authState;
+  }
+
+  logOut() {
+    return this.afAuth.auth.signOut();
+  }
+
 
 }

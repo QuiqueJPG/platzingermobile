@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/user';
 import { User, Status } from '../../interfaces/user';
 import { HomePage } from '../home/home';
+import { AuthService } from '../../services/auth';
 
 
 /**
@@ -37,7 +38,7 @@ export class LoginPage {
 
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, authService: AuthService) {
 
     this.loginForm = new FormGroup ({
       nick: new FormControl('', [Validators.required]),
