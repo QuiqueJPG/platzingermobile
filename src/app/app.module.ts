@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -10,6 +11,7 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
 import { ConversationPageModule } from '../pages/conversation/conversation.module';
 import { AboutPageModule } from '../pages/about/about.module';
 import { UserService } from '../services/user';
+import { AuthService } from '../services/auth';
 import {SearchPipe} from "../pipes/search";
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -44,7 +46,8 @@ export const firebaseConfig = {
     AboutPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,6 +59,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     UserService,
+    AuthService,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

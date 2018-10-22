@@ -11,12 +11,21 @@ import { UserService } from '../../services/user';
 })
 export class HomePage {
 
+  // friends: User[];
   friends: User[];
   searchQuery: string = '';
 
   constructor(public navCtrl: NavController, public userService: UserService) {
 
-    this.friends = userService.getUsers();
+    userService.getUsers()
+      .subscribe(
+        (users: User[]) => {
+          this.friends = users;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   goToConversation(user){

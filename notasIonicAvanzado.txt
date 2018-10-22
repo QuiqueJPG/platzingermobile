@@ -135,4 +135,14 @@ Pipes en TypeScript (Date, Number, Json)
 ngClass y ngStyle
 
 
+
+
 Firebase
+
+
+
+Reemplazo del servicio de usuarios por un servicio dinamico con conexion a Firebase
+
+  Al agregar el atributo novalidate a una etiqueta de tipo form, los browsers no muestran los mensajes de validacion por defecto.
+
+  

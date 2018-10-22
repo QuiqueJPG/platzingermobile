@@ -12,6 +12,8 @@ export class UserService {
     subnick: 'luis',
     age: 23,
     email: 'algo@algo.com',
+    password: '',
+    secondPassword: '',
     friend: false,
     id: 1,
     status: Status.Online
@@ -22,6 +24,8 @@ export class UserService {
     subnick: 'maria',
     age: 23,
     email: 'algo@algo.com',
+    password: '',
+    secondPassword: '',
     friend: true,
     id: 2,
     status: Status.Offline
@@ -32,6 +36,8 @@ export class UserService {
     subnick: 'eduardo',
     age: 23,
     email: 'algo@algo.com',
+    password: '',
+    secondPassword: '',
     friend: false,
     id: 3,
     status: Status.Away
@@ -42,6 +48,8 @@ export class UserService {
     subnick: 'jose',
     age: 23,
     email: 'algo@algo.com',
+    password: '',
+    secondPassword: '',
     friend: true,
     id: 4,
     status: Status.Busy
@@ -52,6 +60,8 @@ export class UserService {
     subnick: 'raquel',
     age: 23,
     email: 'algo@algo.com',
+    password: '',
+    secondPassword: '',
     friend: true,
     id: 5,
     status: Status.AppearOffline
@@ -69,8 +79,8 @@ export class UserService {
   }
 
   getUsers(){
-    return this.users;
-    // return this.afdb.list('/users');
+    // return this.users;
+    return this.afdb.list('/users').valueChanges();
   }
 
   getUserById(id){
@@ -78,8 +88,8 @@ export class UserService {
   }
 
   createUser(user){
-console.log(user)
-    // return this.afdb.object(`users/${user.id}`).set(user);
+    console.log(user)
+    return this.afdb.object(`users/${user.id}`).set(user);
   }
 
   editUser(user){
