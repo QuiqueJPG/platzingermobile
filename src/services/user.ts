@@ -84,7 +84,7 @@ export class UserService {
   }
 
   getUserById(id){
-    return this.afdb.object(`users/${id}`)
+    return this.afdb.object(`users/${id}`).valueChanges();
   }
 
   createUser(user){

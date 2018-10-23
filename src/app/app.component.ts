@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,6 +9,7 @@ import { LoginPage } from '../pages/login/login';
 import { ConversationPage } from '../pages/conversation/conversation';
 import { ProfilePage } from '../pages/profile/profile';
 import { AboutPage } from '../pages/about/about';
+import { AuthService } from '../services/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,11 +17,15 @@ import { AboutPage } from '../pages/about/about';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = ProfilePage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              public authService: AuthService,
+              private app: App) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -48,5 +53,15 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logOut() {
+    this.authService.logOut()
+      .then((data) => {
+        this.app.getRootNav().setRoot(LoginPage)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
   }
 }

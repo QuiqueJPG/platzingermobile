@@ -11,8 +11,8 @@ export interface User {
   subnick?: string;
   age?: number;
   email: string;
-  password: string;
-  secondPassword: string;
+  password?: string;
+  secondPassword?: string;
   friend: boolean;
   id: any,
   status: string;

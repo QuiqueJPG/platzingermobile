@@ -145,4 +145,19 @@ Reemplazo del servicio de usuarios por un servicio dinamico con conexion a Fireb
 
   Al agregar el atributo novalidate a una etiqueta de tipo form, los browsers no muestran los mensajes de validacion por defecto.
 
-  
+  Para traernos un observable de los usuarios almacenados en firebase necesitamos del metodo valuechanges() que nos permite subscribirnos:
+
+    getUsers(){
+      // return this.users;
+      return this.afdb.list('/users').valueChanges();
+    }
+
+  Al subscribirnos a un observable, podemos definir el tipo de dato que espramos en el parametro de datos en succes:
+
+    userService.getUsers()
+      .subscribe((users: User[]) => {
+        this.friends = users;
+      },
+      (error)=>{
+        console.log(error);
+      });
